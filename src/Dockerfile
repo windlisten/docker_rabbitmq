@@ -12,7 +12,8 @@ RUN yum -y install build-essential openssl openssl-devel unixODBC unixODBC-devel
     rm -f /usr/local/rabbitmq_erlang.repo && \
     rm -f /usr/local/rabbitMQ.repo && \
     rm -f /usr/local/rabbitmq-server-3.7.16-1.el7.noarch.rpm && \
-    yum clean all && \
+    yum clean all && \ 
+    sed -i "s/{loopback_users, \[<<\"guest\">>\]},/{loopback_users, \[\]},/" /usr/lib/rabbitmq/lib/rabbitmq_server-3.7.16/ebin/rabbit.app && \
     rabbitmq-plugins enable rabbitmq_management
 ENV LANG     en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
